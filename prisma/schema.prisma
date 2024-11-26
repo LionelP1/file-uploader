@@ -10,9 +10,9 @@ datasource db {
 model User {
   id Int @default(autoincrement()) @unique
   userName String @unique
-  password String
   firstName String
   lastName String
+  password String
   files File[]
   folder Folder[]
   createdAt   DateTime @default(now())
