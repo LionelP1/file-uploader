@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- <link rel="stylesheet" href="/css/main.css"> -->
+</head>
+<body>
+    <%- include('../header') %>
+    <h2 class="title">Sign Up</h2>
+
+    <% if (errors && errors.length > 0) { %>
+        <div class="error-messages">
+            <p class="error"><%= errors[0].msg %></p>
+        </div>
+    <% } %>
+
+    <form class="form" action="/signup" method="POST">
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name" value="<%= data ? data.first_name : '' %>" required maxlength="50">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" value="<%= data ? data.last_name : '' %>" required maxlength="50">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="username">Username:</label>
+            <input class="form-input" type="text" id="username" name="username" placeholder="Username" value="<%= data ? data.username : '' %>" required maxlength="100">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-input" type="password" id="password" name="password" placeholder="Password" required maxlength="255">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="confirmPassword">Confirm Password:</label>
+            <input class="form-input" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required maxlength="255">
+        </div>
+        <button class="submit" type="submit">Sign Up</button>
+    </form>
+    <p class="redirect-link">Already have an account? <a href="/login">Login here</a></p>
+</body>
+</html>
