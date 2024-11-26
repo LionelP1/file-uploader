@@ -1,12 +1,14 @@
 const express = require('express');
-const authController = require('../controllers/renderController');
+const renderController = require('../controllers/renderController');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
-router.get('/login', authMiddleware.redirectIfAuthenticated, authController.getLoginPage);
+router.get('/', renderController.getWelcomePage);
 
-router.get('/signup', authMiddleware.redirectIfAuthenticated, authController.getSignupPage);
+router.get('/login', renderController.redirectIfAuthenticated, authController.getLoginPage);
 
-router.get('/home', authMiddleware.isAuthenticated, authController.getHomePage);
+router.get('/signup', renderController.redirectIfAuthenticated, authController.getSignupPage);
+
+router.get('/home', renderController.isAuthenticated, authController.getHomePage);
 
 module.exports = router;

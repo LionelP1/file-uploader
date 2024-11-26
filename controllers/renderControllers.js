@@ -1,6 +1,11 @@
 const { validationResult } = require('express-validator');
 const prismaQueries = require('../queries');
 
+exports.getHomePage = (req, res) => {
+  res.render('homepage');
+};
+
+
 exports.getLoginPage = (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.render('auth/login', {
