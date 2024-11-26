@@ -8,9 +8,37 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id Int @default(autoincrement()) @unique
+  userName String @unique
+  password String
+  firstName String
+  lastName String
+  files File[]
+  folder Folder[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Folder {
+  id         Int      @id @default(autoincrement()) @unique
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  folderName String
+  parentId   Int?
+  parent     Folder?  @relation("ParentChildFolder", fields: [parentId], references: [id])
+  children   Folder[] @relation("ParentChildFolder")
+  files      File[]
+  createdAt  DateTime @default(now())
+}
+
+model File {
+  id         Int      @id @default(autoincrement()) @unique
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  folderId   Int?
+  folder     Folder?  @relation(fields: [folderId], references: [id])
+  fileName   String
+  filePath   String
+  fileSize   Int
+  createdAt  DateTime @default(now())
 }
