@@ -9,8 +9,15 @@ exports.getLoginPage = (req, res) => {
   });
 };
 
-// Render the signup page
 exports.getSignupPage = (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.render('auth/signup', {
+    errors: [],
+    data: {}
+  });
+};
+
+exports.getHomePage = (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.render('auth/signup', {
     errors: [],
