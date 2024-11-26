@@ -12,6 +12,22 @@ const prismaQueries = {
       },
     });
   },
+
+  findUserByUsername: async (userName) => {
+    return await prisma.user.findUnique({
+      where: {
+        userName: userName,
+      },
+    });
+  },
+
+  findUserById: async (id) => {
+    return await prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+  },
 };
 
 module.exports = prismaQueries;
