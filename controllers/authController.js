@@ -23,7 +23,7 @@ exports.handleLogin = (req, res, next) => {
     }
     req.logIn(user, (err) => {
       if (err) return next(err);
-      res.redirect('/messages');
+      res.redirect('/homepage');
     });
   })(req, res, next);
 };
@@ -54,7 +54,7 @@ exports.createUser = async (req, res, next) => {
 
     req.login(newUser, (err) => {
       if (err) return next(err);
-      res.redirect('/messages');
+      res.redirect('/homepage');
     });
   } catch (err) {
     return next(err);

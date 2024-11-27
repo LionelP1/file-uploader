@@ -9,6 +9,6 @@ router.get('/login', authMiddleware.redirectIfAuthenticated, renderController.ge
 
 router.get('/signup', authMiddleware.redirectIfAuthenticated, renderController.getSignupPage);
 
-router.get('/home', authMiddleware.isAuthenticated, renderController.getHomePage);
+router.get('/homepage', authMiddleware.isAuthenticated, renderController.getHomePage);
 
 module.exports = router;

@@ -8,6 +8,8 @@ const prisma = new PrismaClient();
 module.exports = expressSession({
   store: new PrismaSessionStore(prisma, {
     checkPeriod: 2 * 60 * 1000,
+    dbRecordIdIsSessionId: true,
+    sessionDataFieldName: 'data',
   }),
   secret: process.env.SESSION_SECRET,
   saveUninitialized: false,
