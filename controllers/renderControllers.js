@@ -5,9 +5,6 @@ exports.getWelcomePage = (req, res) => {
   res.render('welcomePage');
 };
 
-exports.getHomePage = async (req, res) => {
-  res.render("homepage");
-};
 
 exports.getLoginPage = (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
@@ -23,4 +20,12 @@ exports.getSignupPage = (req, res) => {
     errors: [],
     data: {}
   });
+};
+
+exports.getHomePage = async (req, res) => {
+  res.render("homepage");
+};
+
+exports.getCreateFolderForm = (req, res) => {
+  res.render('folder/folderForm');
 };

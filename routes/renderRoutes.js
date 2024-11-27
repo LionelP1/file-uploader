@@ -11,4 +11,6 @@ router.get('/signup', authMiddleware.redirectIfAuthenticated, renderController.g
 
 router.get('/homepage', authMiddleware.isAuthenticated, renderController.getHomePage);
 
+router.get('/create-folder', authMiddleware.isAuthenticated, renderController.getCreateFolderForm);
+
 module.exports = router;
