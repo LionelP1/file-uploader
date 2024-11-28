@@ -22,7 +22,7 @@ exports.getSignupPage = (req, res) => {
   });
 };
 
-exports.getHomepage = async (req, res) => {
+exports.getHomePage = async (req, res) => {
   try {
     const folderId = req.params.folderId || null;
     const { userId } = req.user;
@@ -43,5 +43,12 @@ exports.getHomepage = async (req, res) => {
 };
 
 exports.getCreateFolderForm = (req, res) => {
-  res.render('folder/folderForm');
+  try {
+    const folderId = req.params.folderId || null;
+
+    res.render('folder/folderForm', { folderId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while rendering the create folder form.' });
+  }
 };
