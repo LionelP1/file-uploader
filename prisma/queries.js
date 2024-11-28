@@ -29,6 +29,18 @@ const prismaQueries = {
     });
   },
 
+  getFolderById: async (folderId, userId) => {
+    return await prisma.folder.findFirst({
+      where: {
+        id: parseInt(folderId),
+        userId: parseInt(userId),
+      },
+      include: {
+        user: true,
+      },
+    });
+  },
+
   createFolder: async (userId, folderName, parentId = null) => {
     const existingFolder = await prisma.folder.findFirst({
       where: {

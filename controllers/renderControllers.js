@@ -22,8 +22,24 @@ exports.getSignupPage = (req, res) => {
   });
 };
 
-exports.getHomePage = async (req, res) => {
-  res.render("homepage");
+exports.getHomepage = async (req, res) => {
+  try {
+    const folderId = req.params.folderId || null;
+    const { userId } = req.user;
+
+    if (folderId) {
+      const folder = await getFolderById(folderId, userId);
+
+      if (!folder) {
+        return res.status(404).redirect('/homepage');
+      }
+    }
+
+    res.render('homepage', { folderId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching folder details.' });
+  }
 };
 
 exports.getCreateFolderForm = (req, res) => {

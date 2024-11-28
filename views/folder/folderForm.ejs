@@ -8,11 +8,12 @@
 </head>
 <body>
     <h2>Create a New Folder</h2>
-    <form action="/create-folder" method="POST">
+    <form action="<%= folderId ? '/create-folder/' + folderId : '/create-folder' %>" method="POST">
         <label for="folderName">Folder Name:</label>
         <input type="text" id="folderName" name="folderName" required>
         <button type="submit">Create Folder</button>
     </form>
+    
     <a href="/homepage">
         <button>Cancel</button>
     </a>
