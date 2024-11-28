@@ -69,6 +69,32 @@ const prismaQueries = {
     });
   },
 
+  updateFolderName: async (folderId, newFolderName) => {
+    return await prisma.folder.update({
+      where: { id: folderId },
+      data: { folderName: newFolderName },
+    });
+  },
+
+  createFile: async (userId, fileName, filePath, fileSize, folderId = null) => {
+  },
+
+  deleteFile: async (fileId) => {
+    return await prisma.file.delete({
+      where: { id: fileId },
+    });
+  },
+
+  getFolderById: async (folderId) => {
+    return await prisma.folder.findUnique({
+      where: { id: folderId },
+      include: {
+        parent: true,
+        children: true,
+      },
+    });
+  },
+
   getSubFolders: async (userId, parentFolderId = null) => {
     return await prisma.folder.findMany({
       where: {
