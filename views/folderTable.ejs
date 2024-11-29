@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Created</th>
+      <th>Last Updated</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% filesAndFolders.forEach(item => { %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.size ? `${item.size} KB` : '—' %></td>
+        <td><%= new Date(item.createdAt).toLocaleDateString() %></td>
+        <td><%= new Date(item.updatedAt).toLocaleDateString() %></td>
+        <td>
+          <!-- Empty Edit Column for Now -->
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
