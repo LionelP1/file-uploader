@@ -3,15 +3,17 @@ const queries = require("../prisma/queries");
 exports.createFolder = async (req, res) => {
   try {
     const { folderName } = req.body;
-    
+
     const userId = req.user.id;
 
-    const parentFolderId = req.params.parentFolderId ? parseInt(req.params.parentFolderId) : null;
+    const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
+    console.log("Hello");
+    console.log(folderId);
+
+    const newFolder = await queries.createFolder(userId, folderName, folderId);
     
-    const newFolder = await queries.createFolder(userId, folderName, parentFolderId);
-    
-    if (parentFolderId) {
-      return res.redirect(`/homepage/${parentFolderId}`);
+    if (folderId) {
+      return res.redirect(`/homepage/${folderId}`);
     } else {
       return res.redirect('/homepage');
     }

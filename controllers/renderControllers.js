@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator');
-const prismaQueries = require('../prisma/queries');
+const queries = require('../prisma/queries');
 
 exports.getWelcomePage = (req, res) => {
   res.render('welcomePage');
@@ -24,11 +24,11 @@ exports.getSignupPage = (req, res) => {
 
 exports.getHomePage = async (req, res) => {
   try {
-    const folderId = req.params.folderId || null;
-    const { userId } = req.user;
+    const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
+    const userId = req.user.id;
 
     if (folderId) {
-      const folder = await getFolderById(folderId, userId);
+      const folder = await queries.getFolderById(folderId, userId);
 
       if (!folder) {
         return res.status(404).redirect('/homepage');
