@@ -29,31 +29,7 @@ const prismaQueries = {
     });
   },
 
-  getFolderById: async (folderId, userId) => {
-    return await prisma.folder.findFirst({
-      where: {
-        id: parseInt(folderId),
-        userId: parseInt(userId),
-      },
-      include: {
-        user: true,
-      },
-    });
-  },
-
   createFolder: async (userId, folderName, parentId = null) => {
-    const existingFolder = await prisma.folder.findFirst({
-      where: {
-        userId,
-        folderName,
-        parentId,
-      },
-    });
-
-    if (existingFolder) {
-      throw new Error("A folder with this name already exists in the specified location.");
-    }
-
     return await prisma.folder.create({
       data: {
         userId,
@@ -106,6 +82,19 @@ const prismaQueries = {
       },
     });
   },
+
+  getFolderById: async (folderId, userId) => {
+    return await prisma.folder.findFirst({
+      where: {
+        id: parseInt(folderId),
+        userId: parseInt(userId),
+      },
+      include: {
+        user: true,
+      },
+    });
+  },
+
 
   getSubFolders: async (userId, parentFolderId = null) => {
     return await prisma.folder.findMany({

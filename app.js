@@ -3,9 +3,12 @@ const express = require('express');
 const path = require('node:path');
 const app = express();
 const passport = require('./config/passport');
+const sessionConfig = require("./config/session");
+
 const authRoutes = require("./routes/authRoutes");
 const renderRoutes = require("./routes/renderRoutes");
-const sessionConfig = require("./config/session");
+const folderRoutes = require("./routes/folderRoutes");
+// const fileRoutes = require("./routes/fileRoutes");
 
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
@@ -16,6 +19,8 @@ app.use(passport.session());
 
 app.use("/", renderRoutes);
 app.use("/", authRoutes);
+app.use("/", folderRoutes);
+// app.use("/", fileRoutes);
 
 app.use((req, res) => {
   res.status(404).render('error', {
