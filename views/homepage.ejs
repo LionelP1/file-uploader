@@ -14,5 +14,9 @@
     <a href="<%= folderId ? '/create-folder/' + folderId : '/create-folder' %>">
         <button>Create New Folder</button>
     </a>
+
+    <div class="file-folder-table">
+        <%- include('folderTable', { filesAndFolders }); %>
+    </div>
 </body>
 </html>

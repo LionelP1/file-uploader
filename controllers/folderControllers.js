@@ -7,8 +7,6 @@ exports.createFolder = async (req, res) => {
     const userId = req.user.id;
 
     const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
-    console.log("Hello");
-    console.log(folderId);
 
     const newFolder = await queries.createFolder(userId, folderName, folderId);
     

@@ -73,27 +73,6 @@ const prismaQueries = {
     });
   },
 
-  // getFolderById: async (folderId) => {
-  //   return await prisma.folder.findUnique({
-  //     where: { id: folderId },
-  //     include: {
-  //       parent: true,
-  //       children: true,
-  //     },
-  //   });
-  // },
-
-  // getFolderById: async (folderId, userId) => {
-  //   return await prisma.folder.findFirst({
-  //     where: {
-  //       id: parseInt(folderId),
-  //       userId: parseInt(userId),
-  //     },
-  //     include: {
-  //       user: true,
-  //     },
-  //   });
-  // },
 
   getFolderById: async (folderId, userId) => {
     return await prisma.folder.findFirst({
