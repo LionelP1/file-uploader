@@ -4,6 +4,7 @@
     <tr>
       <th>Name</th>
       <th>Size</th>
+      <th>Type</th>
       <th>Created</th>
       <th>Last Updated</th>
       <th>Edit</th>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= item.name %></td>
         <td><%= item.size ? `${item.size} KB` : '—' %></td>
+        <td><%= item.type %></td>
         <td><%= new Date(item.createdAt).toLocaleDateString() %></td>
         <td><%= new Date(item.updatedAt).toLocaleDateString() %></td>
         <td>
