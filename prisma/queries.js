@@ -65,7 +65,18 @@ const prismaQueries = {
   },
 
   createFile: async (userId, fileName, filePath, fileSize, folderId = null) => {
+    return await prisma.file.create({
+      data: {
+        userId,
+        fileName,
+        filePath,
+        fileSize,
+        folderId,
+      },
+    });
   },
+};
+
 
   deleteFile: async (fileId) => {
     return await prisma.file.delete({

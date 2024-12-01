@@ -1,4 +1,4 @@
-const cloudinary = require('../config/cloudinary');
+const queries = require("../prisma/queries");
 
 exports.uploadFile = async (req, res, next) => {
   try {
@@ -8,11 +8,20 @@ exports.uploadFile = async (req, res, next) => {
     const uploadedFile = req.file;
 
     const fileUrl = uploadedFile.path;
+    const fileName = uploadedFile.originalname;
+    const fileSize = uploadedFile.size;
 
-    res.status(200).json({
+    const userId = req.user.id;
+    const folderId = req.body.folderId || null;
+
+    const newFile = await queries.createFile(userId, fileName, fileUrl, fileSize, folderId);
+
+    res.status(201).json({
       message: 'File uploaded successfully',
       fileUrl: fileUrl,
-      fileName: uploadedFile.originalname,
+      fileName: fileName,
+      fileSize: fileSize,
+      fileId: newFile.id,
     });
   } catch (error) {
     console.error(error);

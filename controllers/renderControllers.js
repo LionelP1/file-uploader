@@ -5,7 +5,6 @@ exports.getWelcomePage = (req, res) => {
   res.render('welcomePage');
 };
 
-
 exports.getLoginPage = (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.render('auth/login', {
@@ -45,7 +44,6 @@ exports.getHomePage = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching folder details.' });
   }
 };
-
 
 exports.getCreateFolderForm = (req, res) => {
   try {
