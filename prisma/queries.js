@@ -75,7 +75,6 @@ const prismaQueries = {
       },
     });
   },
-};
 
 
   deleteFile: async (fileId) => {

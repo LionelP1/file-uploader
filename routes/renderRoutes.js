@@ -10,5 +10,9 @@ router.get('/login', authMiddleware.redirectIfAuthenticated, renderController.ge
 router.get('/signup', authMiddleware.redirectIfAuthenticated, renderController.getSignupPage);
 
 router.get('/homepage/:folderId?', authMiddleware.isAuthenticated, renderController.getHomePage);
+
 router.get('/create-folder/:folderId?', authMiddleware.isAuthenticated, renderController.getCreateFolderForm);
+
+router.get('/create-file/:folderId?', authMiddleware.isAuthenticated, renderController.getFileUploadForm);
+
 module.exports = router;

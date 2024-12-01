@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const queries = require('../prisma/queries');
 const utilities = require('../utils/displayUtils');
+
 exports.getWelcomePage = (req, res) => {
   res.render('welcomePage');
 };
@@ -53,5 +54,16 @@ exports.getCreateFolderForm = (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while rendering the create folder form.' });
+  }
+};
+
+exports.getFileUploadForm = (req, res) => {
+  try {
+    const folderId = req.params.folderId || null;
+
+    res.render('file/fileForm', { folderId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while rendering the file upload form.' });
   }
 };

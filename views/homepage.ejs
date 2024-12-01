@@ -16,6 +16,10 @@
         <button>Create New Folder</button>
     </a>
 
+    <a href="<%= folderId ? '/create-file/' + folderId : '/create-file' %>">
+        <button>Upload New File</button>
+    </a>
+
     <div class="file-folder-table">
         <%- include('folderTable', { filesAndFolders }); %>
     </div>
