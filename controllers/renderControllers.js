@@ -33,9 +33,10 @@ exports.getHomePage = async (req, res) => {
       return res.status(404).redirect('/homepage');
     }
 
-    const parentFolder = folder?.parentFolderId
-      ? await queries.getFolderById(folder.parentFolderId, userId)
+    const parentFolder = folder?.parentId
+      ? await queries.getFolderById(folder.parentId, userId)
       : null;
+    console.log(parentFolder);
 
     const { folders, files } = await utilities.fetchFoldersAndFiles(userId, folderId);
     const filesAndFolders = utilities.formatFoldersAndFiles(folders, files);

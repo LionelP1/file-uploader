@@ -14,14 +14,18 @@
 
     <div>
         <% if (folder) { %>
-            <h3>Current Folder: <%= folder.name %></h3>
+            <h3>Current Folder: <%= folder.folderName %></h3>
             <% if (parentFolder) { %>
                 <a href="/homepage/<%= parentFolder.id %>">
-                    <button>Back to <%= parentFolder.name %></button>
+                    <button>Back to <%= parentFolder.folderName %></button>
                 </a>
             <% } %>
+            <a href="/homepage">
+                <button>Back to Home</button>
+            </a>
         <% } %>
     </div>
+
     <a href="<%= folder ? '/create-folder/' + folder.id : '/create-folder' %>">
         <button>Create New Folder</button>
     </a>
