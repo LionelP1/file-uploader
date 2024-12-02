@@ -12,11 +12,21 @@
         <button class="messages-nav" type="submit">Log Out</button>
     </form>
 
-    <a href="<%= folderId ? '/create-folder/' + folderId : '/create-folder' %>">
+    <div>
+        <% if (folder) { %>
+            <h3>Current Folder: <%= folder.name %></h3>
+            <% if (parentFolder) { %>
+                <a href="/homepage/<%= parentFolder.id %>">
+                    <button>Back to <%= parentFolder.name %></button>
+                </a>
+            <% } %>
+        <% } %>
+    </div>
+    <a href="<%= folder ? '/create-folder/' + folder.id : '/create-folder' %>">
         <button>Create New Folder</button>
     </a>
 
-    <a href="<%= folderId ? '/create-file/' + folderId : '/create-file' %>">
+    <a href="<%= folder ? '/create-file/' + folder.id : '/create-file' %>">
         <button>Upload New File</button>
     </a>
 
