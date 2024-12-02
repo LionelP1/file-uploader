@@ -10,9 +10,9 @@
   </thead>
   <tbody>
     <% filesAndFolders.forEach(item => { %>
-      <tr onclick="window.location.href='<%= item.type === 'Folder' ? `/homepage/${item.id}` : `/file/${item.id}` %>'">
+      <tr onclick=" window.location.href='<%= item.type === 'Folder' ? `/homepage/${item.id}` : `/file/${item.id}` %>'">
         <td><%= item.name %></td>
-        <td><%= item.size ? `${item.size} KB` : '—' %></td>
+        <td><%= item.size ? `${item.size}` : '—' %></td>
         <td><%= item.type %></td>
         <td><%= new Date(item.createdAt).toLocaleDateString() %></td>
         <td><%= new Date(item.updatedAt).toLocaleDateString() %></td>

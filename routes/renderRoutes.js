@@ -13,6 +13,6 @@ router.get('/homepage/:folderId?', authMiddleware.isAuthenticated, renderControl
 
 router.get('/create-folder/:folderId?', authMiddleware.isAuthenticated, renderController.getCreateFolderForm);
 
-router.get('/create-file/:folderId?', authMiddleware.isAuthenticated, renderController.getFileUploadForm);
+router.get('/create-file/:folderId?', authMiddleware.isAuthenticated, renderController.getCreateFileForm);
 
 module.exports = router;

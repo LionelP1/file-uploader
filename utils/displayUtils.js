@@ -11,6 +11,15 @@ exports.fetchFoldersAndFiles = async (userId, folderId) => {
   }
 };
 
+const formatFileSize = (sizeInBytes) => {
+  const sizeInKB = sizeInBytes / 1024;
+  if (sizeInKB < 1024) {
+    return `${sizeInKB.toFixed(2)} KB`;
+  }
+  const sizeInMB = sizeInKB / 1024;
+  return `${sizeInMB.toFixed(2)} MB`;
+};
+
 exports.formatFoldersAndFiles = (folders, files) => {
   return [
     ...folders.map(folder => ({
@@ -24,7 +33,7 @@ exports.formatFoldersAndFiles = (folders, files) => {
     ...files.map(file => ({
       id: file.id,
       name: file.fileName,
-      size: file.fileSize,
+      size: formatFileSize(file.fileSize),
       createdAt: file.createdAt,
       updatedAt: file.updatedAt,
       type: 'File',

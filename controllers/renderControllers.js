@@ -65,7 +65,7 @@ exports.getCreateFolderForm = (req, res) => {
   }
 };
 
-exports.getFileUploadForm = (req, res) => {
+exports.getCreateFileForm = (req, res) => {
   try {
     const folderId = req.params.folderId || null;
 
