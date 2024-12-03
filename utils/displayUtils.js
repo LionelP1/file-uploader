@@ -21,7 +21,7 @@ const formatFileSize = (sizeInBytes) => {
 };
 
 exports.formatFoldersAndFiles = (folders, files) => {
-  return [
+  const combined = [
     ...folders.map(folder => ({
       id: folder.id,
       name: folder.folderName,
@@ -33,10 +33,14 @@ exports.formatFoldersAndFiles = (folders, files) => {
     ...files.map(file => ({
       id: file.id,
       name: file.fileName,
-      size: formatFileSize(file.fileSize),
+      size: formatFileSize(file.fileSize),  // Format the file size here
       createdAt: file.createdAt,
       updatedAt: file.updatedAt,
       type: 'File',
     })),
   ];
+
+  combined.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+
+  return combined;
 };

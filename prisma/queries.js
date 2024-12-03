@@ -117,7 +117,7 @@ const prismaQueries = {
         folderId: folderId, // null for root-level files
       },
       orderBy: {
-        createdAt: 'asc',
+        updatedAt: 'desc',
       },
     });
   },

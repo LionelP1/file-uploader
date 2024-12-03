@@ -2,9 +2,6 @@ const queries = require("../prisma/queries");
 
 exports.uploadFile = async (req, res, next) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
-    }
     const uploadedFile = req.file;
 
     const fileUrl = uploadedFile.path;

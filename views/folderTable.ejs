@@ -11,6 +11,15 @@
   <tbody>
     <% filesAndFolders.forEach(item => { %>
       <tr onclick=" window.location.href='<%= item.type === 'Folder' ? `/homepage/${item.id}` : `/file/${item.id}` %>'">
+        <td>
+          <% if (item.type === 'Folder') { %>
+            <img src="/images/folder-icon.png" alt="Folder" style="width: 20px; height: 20px; margin-right: 10px;" />
+          <% } else if (item.type === 'File') { %>
+            <img src="/images/file-icon.png" alt="File" style="width: 20px; height: 20px; margin-right: 10px;" />
+          <% } %>
+          <%= item.name %>
+        </td>
+        
         <td><%= item.name %></td>
         <td><%= item.size ? `${item.size}` : '—' %></td>
         <td><%= item.type %></td>
