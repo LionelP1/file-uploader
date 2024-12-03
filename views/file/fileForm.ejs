@@ -8,6 +8,13 @@
 </head>
 <body>
     <h2>Create a New File</h2>
+
+    <% if (error) { %>
+        <div>
+          <strong><%= error %></strong>
+        </div>
+    <% } %>
+
     <form action="/upload/<%= folderId %>" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" required/>
       <button type="submit">Upload File</button>
