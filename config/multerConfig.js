@@ -13,10 +13,8 @@ const storage = new CloudinaryStorage({
 
 const fileFilter = (req, file, cb) => {
   if (!SUPPORTED_FILE_TYPES.includes(file.mimetype)) {
-    return cb(new Error('Unsupported file type'), false);
-  }
-  if (file.size > MAX_SIZE) {
-    return cb(new Error(`File size exceeds the maximum allowed limit of ${MAX_SIZE / (1024 * 1024)} MB`), false);
+    req.fileValidationError = 'Invalid file type';
+    return cb(null, false);
   }
   cb(null, true);
 };
