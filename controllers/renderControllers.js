@@ -68,7 +68,7 @@ exports.getCreateFileForm = (req, res) => {
   try {
     const folderId = req.params.folderId || null;
 
-    res.render('file/fileForm', { folderId });
+    res.render('file/fileForm', { folderId, error:''});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while rendering the file upload form.' });

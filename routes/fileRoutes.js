@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/upload/:folderId?', 
   authMiddleware.isAuthenticated,
   fileValidationMiddleware,
-  upload.single('file'),
+  upload,
   fileController.uploadFile
 );
 
