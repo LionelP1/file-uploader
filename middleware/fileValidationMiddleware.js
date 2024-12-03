@@ -5,21 +5,21 @@ const fileValidationMiddleware = (req, res, next) => {
   const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
 
   if (!uploadedFile) {
-    return res.render('fileForm', {
+    return res.render('file/fileForm', {
       folderId: folderId,
       error: 'No file selected. Please choose a file to upload.',
     });
   }
 
   if (!SUPPORTED_FILE_TYPES.includes(uploadedFile.mimetype)) {
-    return res.render('fileForm', {
+    return res.render('file/fileForm', {
       folderId: folderId,
       error: 'Invalid file type. Only supported types are: ' + SUPPORTED_FILE_TYPES.join(', '),
     });
   }
 
   if (uploadedFile.size > MAX_SIZE) {
-    return res.render('fileForm', {
+    return res.render('file/fileForm', {
       folderId: folderId,
       error: `File size exceeds the maximum allowed limit of ${MAX_SIZE / (1024 * 1024)} MB.`,
     });

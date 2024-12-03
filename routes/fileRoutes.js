@@ -7,7 +7,7 @@ const fileValidationMiddleware = require('../middleware/fileValidationMiddleware
 
 const router = express.Router();
 
-router.post('/upload/:folderId?', 
+router.post('/create-file/:folderId?', 
   authMiddleware.isAuthenticated,
   fileValidationMiddleware,
   upload,
