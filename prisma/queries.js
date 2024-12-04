@@ -40,11 +40,6 @@ const prismaQueries = {
   },
 
 
-  deleteFolder: async (folderId) => {
-    //How to handle the files and other 
-    //folders within that folder
-  },
-
   getFolders: async (userId, parentId = null) => {
     return await prisma.folder.findMany({
       where: {
@@ -73,13 +68,6 @@ const prismaQueries = {
         fileSize,
         folderId,
       },
-    });
-  },
-
-
-  deleteFile: async (fileId) => {
-    return await prisma.file.delete({
-      where: { id: fileId },
     });
   },
 
@@ -129,6 +117,41 @@ const prismaQueries = {
     });
   },
 
+  deleteFile: async (fileId, userId) => {
+    return await prisma.file.deleteMany({
+      where: {
+        id: fileId,
+        userId: userId,
+      },
+    });
+  },
+
+  deleteFolder: async (folderId, userId) => {
+    // delete all files
+    await prisma.file.deleteMany({
+      where: {
+        folderId: folderId,
+        userId: userId,
+      },
+    });
+  
+    // delete subfolders
+    const subfolders = await prisma.folder.findMany({
+      where: { parentId: folderId, userId: userId },
+    });
+  
+    for (const subfolder of subfolders) {
+      await prismaQueries.deleteFolder(subfolder.id, userId);
+    }
+  
+    // delete itself
+    return await prisma.folder.deleteMany({
+      where: {
+        id: folderId,
+        userId: userId,
+      },
+    });
+  },
 };
 
 module.exports = prismaQueries;
