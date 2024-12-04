@@ -2,8 +2,8 @@ const queries = require('../prisma/queries');
 
 exports.fetchFoldersAndFiles = async (userId, folderId) => {
   try {
-    const folders = await queries.getFolders(userId, folderId);
-    const files = await queries.getFilesInFolder(userId, folderId);
+    const folders = await queries.getFolders(userId, folderId).catch(() => []);
+    const files = await queries.getFilesInFolder(userId, folderId).catch(() => []);
 
     return { folders, files };
   } catch (error) {

@@ -5,6 +5,7 @@ exports.uploadFile = async (req, res, next) => {
   try {
     const uploadedFile = req.file;
 
+    const cloudinaryPublicId = uploadedFile.filename; 
     const fileUrl = uploadedFile.path;
     const fileName = uploadedFile.originalname;
     const fileSize = uploadedFile.size;
@@ -12,7 +13,7 @@ exports.uploadFile = async (req, res, next) => {
     const userId = req.user.id;
     const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
 
-    const newFile = await queries.createFile(userId, fileName, fileUrl, fileSize, folderId);
+    const newFile = await queries.createFile(userId, fileName, fileUrl, fileSize, folderId, cloudinaryPublicId);
 
     if (folderId) {
       return res.redirect(`/homepage/${folderId}`);
@@ -31,14 +32,12 @@ exports.deleteFile = async (req, res) => {
 
   try {
     const file = await queries.getFileById(userId, fileId); 
-    const folderId = file.folderId;
 
     if (!file) {
       return res.status(404).json({ error: 'File not found or not authorized to delete.' });
     }
 
-    console.log(userId);
-    console.log(fileId);
+    const { folderId, cloudinaryPublicId } = file;
 
     const deleted = await queries.deleteFile(userId, fileId);
 
@@ -47,15 +46,12 @@ exports.deleteFile = async (req, res) => {
     }
 
     if (cloudinaryPublicId) {
-      cloudinary.uploader.destroy(cloudinaryPublicId, (error, result) => {
+      await cloudinary.uploader.destroy(cloudinaryPublicId, (error, result) => {
         if (error) {
           console.error('Error deleting from Cloudinary:', error);
-        } else {
-          console.log('Deleted from Cloudinary:', result);
         }
       });
     }
-
 
     if (folderId) {
       res.redirect(`/homepage/${folderId}`);

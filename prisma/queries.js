@@ -59,7 +59,7 @@ const prismaQueries = {
     });
   },
 
-  createFile: async (userId, fileName, filePath, fileSize, folderId = null) => {
+  createFile: async (userId, fileName, filePath, fileSize, folderId = null, cloudinaryPublicId) => {
     return await prisma.file.create({
       data: {
         userId,
@@ -67,6 +67,7 @@ const prismaQueries = {
         filePath,
         fileSize,
         folderId,
+        cloudinaryPublicId,
       },
     });
   },
