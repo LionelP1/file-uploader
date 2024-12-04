@@ -17,19 +17,18 @@
           <% } else if (item.type === 'File') { %>
             <img src="/images/file-icon.png" alt="File" style="width: 20px; height: 20px; margin-right: 10px;" />
           <% } %>
-          <%= item.name %>
         </td>
-        
         <td><%= item.name %></td>
         <td><%= item.size ? `${item.size}` : '—' %></td>
         <td><%= item.type %></td>
         <td><%= new Date(item.createdAt).toLocaleDateString() %></td>
         <td><%= new Date(item.updatedAt).toLocaleDateString() %></td>
         <td>
-          <form action="/delete-<%= item.type.toLowerCase() %>/<%= item.id %>" method="POST">
-            <input type="hidden" name="_method" value="DELETE" />
-            <button type="submit" class="btn btn-danger">Delete</button>
+          <form action="/delete-<%= item.type.toLowerCase() %>/<%= item.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="delete-btn">Delete</button>
+            <!-- <button type="submit" class="delete-btn" onclick="event.stopPropagation();">Delete</button> -->
           </form>
+          
         </td>
       </tr>
     <% }); %>

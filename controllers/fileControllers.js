@@ -1,4 +1,5 @@
 const queries = require("../prisma/queries");
+const cloudinary = require('../config/cloudinary');
 
 exports.uploadFile = async (req, res, next) => {
   try {
@@ -29,18 +30,34 @@ exports.deleteFile = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const file = await queries.getFileById(fileId, userId); 
+    const file = await queries.getFileById(userId, fileId); 
     const folderId = file.folderId;
 
-    const deleted = await queries.deleteFile(fileId, userId);
-
-    if (!deleted.count) {
+    if (!file) {
       return res.status(404).json({ error: 'File not found or not authorized to delete.' });
     }
 
+    console.log(userId);
+    console.log(fileId);
+
+    const deleted = await queries.deleteFile(userId, fileId);
+
+    if (!deleted) {
+      return res.status(404).json({ error: 'File not found or not authorized to delete.' });
+    }
+
+    if (cloudinaryPublicId) {
+      cloudinary.uploader.destroy(cloudinaryPublicId, (error, result) => {
+        if (error) {
+          console.error('Error deleting from Cloudinary:', error);
+        } else {
+          console.log('Deleted from Cloudinary:', result);
+        }
+      });
+    }
 
 
-    if (parentFolderId) {
+    if (folderId) {
       res.redirect(`/homepage/${folderId}`);
     } else {
       res.redirect('/homepage');

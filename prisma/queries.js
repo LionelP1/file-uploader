@@ -72,7 +72,7 @@ const prismaQueries = {
   },
 
 
-  getFolderById: async (folderId, userId) => {
+  getFolderById: async (userId, folderId) => {
     return await prisma.folder.findFirst({
       where: {
         id: folderId,
@@ -117,16 +117,16 @@ const prismaQueries = {
     });
   },
 
-  deleteFile: async (fileId, userId) => {
-    return await prisma.file.deleteMany({
+  deleteFile: async (userId, fileId) => {
+    return await prisma.file.delete({
       where: {
-        id: fileId,
         userId: userId,
+        id: fileId,
       },
     });
   },
 
-  deleteFolder: async (folderId, userId) => {
+  deleteFolder: async ( userId, folderID) => {
     // delete all files
     await prisma.file.deleteMany({
       where: {
