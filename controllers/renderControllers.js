@@ -34,8 +34,8 @@ exports.getHomePage = async (req, res) => {
     }
 
     const parentFolder = folder?.parentId
-      ? await queries.getFolderById(folder.parentId, userId)
-      : null;
+    ? await queries.getFolderById(folder.parentId, userId)
+    : null;
 
     const { folders, files } = await utilities.fetchFoldersAndFiles(userId, folderId);
     const filesAndFolders = utilities.formatFoldersAndFiles(folders, files);
@@ -72,5 +72,20 @@ exports.getCreateFileForm = (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while rendering the file upload form.' });
+  }
+};
+
+exports.getFileInfoPage = async (req, res) => {
+  try {
+    const fileId = parseInt(req.params.fileId);
+    const file = await queries.getFileById(fileId);
+
+    if (!file) {
+      return res.status(404).redirect('/homepage');
+    }
+
+    res.render('file/fileInfo', { file }); 
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while fetching file details.' });
   }
 };

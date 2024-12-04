@@ -15,4 +15,6 @@ router.get('/create-folder/:folderId?', authMiddleware.isAuthenticated, renderCo
 
 router.get('/create-file/:folderId?', authMiddleware.isAuthenticated, renderController.getCreateFileForm);
 
+router.get('/file-info/:fileId', authMiddleware.isAuthenticated, renderController.getFileInfoPage);
+
 module.exports = router;

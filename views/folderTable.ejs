@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% filesAndFolders.forEach(item => { %>
-      <tr onclick=" window.location.href='<%= item.type === 'Folder' ? `/homepage/${item.id}` : `/file/${item.id}` %>'">
+      <tr onclick="window.location.href='<%= item.type === 'Folder' ? `/homepage/${item.id}` : `/file-info/${item.id}` %>'">
         <td>
           <% if (item.type === 'Folder') { %>
             <img src="/images/folder-icon.png" alt="Folder" style="width: 20px; height: 20px; margin-right: 10px;" />

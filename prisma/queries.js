@@ -96,8 +96,6 @@ const prismaQueries = {
     });
   },
 
-
-
   getSubFolders: async (userId, parentFolderId = null) => {
     return await prisma.folder.findMany({
       where: {
@@ -118,6 +116,14 @@ const prismaQueries = {
       },
       orderBy: {
         updatedAt: 'desc',
+      },
+    });
+  },
+
+  getFileById: async (fileId) => {
+    return await prisma.file.findUnique({
+      where: {
+        id: fileId,
       },
     });
   },

@@ -62,6 +62,6 @@ const SUPPORTED_FILE_TYPES = [
   "text/markdown", // .md
 ];
 
-const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
+const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
 
 module.exports = { SUPPORTED_FILE_TYPES, MAX_SIZE };

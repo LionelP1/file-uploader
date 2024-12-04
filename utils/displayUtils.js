@@ -33,7 +33,7 @@ exports.formatFoldersAndFiles = (folders, files) => {
     ...files.map(file => ({
       id: file.id,
       name: file.fileName,
-      size: formatFileSize(file.fileSize),  // Format the file size here
+      size: formatFileSize(file.fileSize),
       createdAt: file.createdAt,
       updatedAt: file.updatedAt,
       type: 'File',
