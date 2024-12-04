@@ -8,7 +8,16 @@
   </head>
   <body>
     <%- include('../header') %>
-    <h2>This is the file information page</h2>
-    <a class="button" href="/">Go to Homepage</a>
+    <h3>Details for File: <%= file.fileName %></h3>
+    <ul>
+      <li><strong>ID:</strong> <%= file.id %></li>
+      <li><strong>Name:</strong> <%= file.fileName %></li>
+      <li><strong>Size:</strong> <%= (file.fileSize / 1024).toFixed(2) %> KB</li>
+      <li><strong>Created At:</strong> <%= new Date(file.createdAt).toLocaleString() %></li>
+      <li><strong>Last Updated:</strong> <%= new Date(file.updatedAt).toLocaleString() %></li>
+      <% if (file.folder) { %>
+        <li><strong>Folder:</strong> <%= file.folder.folderName %></li>
+      <% } %>
+    </ul>
   </body>
 </html>
