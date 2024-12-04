@@ -11,6 +11,7 @@ const folderRoutes = require("./routes/folderRoutes");
 const fileRoutes = require("./routes/fileRoutes");
 
 app.set("views", path.join(__dirname, "views"));
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));

@@ -25,6 +25,12 @@
         <td><%= item.type %></td>
         <td><%= new Date(item.createdAt).toLocaleDateString() %></td>
         <td><%= new Date(item.updatedAt).toLocaleDateString() %></td>
+        <td>
+          <form action="/delete-<%= item.type.toLowerCase() %>/<%= item.id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </td>
       </tr>
     <% }); %>
   </tbody>

@@ -24,19 +24,18 @@ exports.createFolder = async (req, res) => {
 };
 
 exports.deleteFolder = async (req, res) => {
-  const folderId = parseInt(req.params.folderId, 10);
+  const folderId = parseInt(req.params.folderId);
   const userId = req.user.id;
 
   try {
+    const folder = await queries.getFolderById(folderId, userId);
+    const parentFolderId = folder.parentId;
+
     const deleted = await queries.deleteFolder(folderId, userId);
 
     if (!deleted.count) {
       return res.status(404).json({ error: 'Folder not found or not authorized to delete.' });
     }
-
-    const folder = await queries.getFolderById(folderId, userId);
-
-    const parentFolderId = folder.parentId;
 
     if (parentFolderId) {
       res.redirect(`/homepage/${parentFolderId}`);

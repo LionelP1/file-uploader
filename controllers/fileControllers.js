@@ -29,15 +29,16 @@ exports.deleteFile = async (req, res) => {
   const userId = req.user.id;
 
   try {
+    const file = await queries.getFileById(fileId, userId); 
+    const folderId = file.folderId;
+
     const deleted = await queries.deleteFile(fileId, userId);
 
     if (!deleted.count) {
       return res.status(404).json({ error: 'File not found or not authorized to delete.' });
     }
 
-    const file = await queries.getFileById(fileId, userId);
 
-    const folderId = file.folderId;
 
     if (parentFolderId) {
       res.redirect(`/homepage/${folderId}`);

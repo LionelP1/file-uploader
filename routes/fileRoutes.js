@@ -38,4 +38,7 @@ router.post('/create-file/:folderId?',
   fileController.uploadFile
 );
 
+router.delete('/delete-file/:fileId', authMiddleware.isAuthenticated, fileController.deleteFile);
+
+
 module.exports = router;
