@@ -9,6 +9,9 @@
   <body>
     <%- include('../header') %>
     <h3>Details for File: <%= file.fileName %></h3>
+    <a href="/homepage/<%=  file.folderId %>">
+      <button>Back to Folder</button>
+    </a>
     <ul>
       <li><strong>ID:</strong> <%= file.id %></li>
       <li><strong>Name:</strong> <%= file.fileName %></li>

@@ -127,7 +127,7 @@ const prismaQueries = {
       },
     });
   },
-
+  
 };
 
 module.exports = prismaQueries;
