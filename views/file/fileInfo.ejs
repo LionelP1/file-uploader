@@ -13,14 +13,11 @@
       <button>Back to Folder</button>
     </a>
     <ul>
-      <li><strong>ID:</strong> <%= file.id %></li>
+      <li><strong>Id:</strong> <%= file.id %></li>
       <li><strong>Name:</strong> <%= file.fileName %></li>
       <li><strong>Size:</strong> <%= (file.fileSize / 1024).toFixed(2) %> KB</li>
       <li><strong>Created At:</strong> <%= new Date(file.createdAt).toLocaleString() %></li>
       <li><strong>Last Updated:</strong> <%= new Date(file.updatedAt).toLocaleString() %></li>
-      <% if (file.folder) { %>
-        <li><strong>Folder:</strong> <%= file.folder.folderName %></li>
-      <% } %>
     </ul>
   </body>
 </html>

@@ -76,16 +76,27 @@ exports.getCreateFileForm = (req, res) => {
 };
 
 exports.getFileInfoPage = async (req, res) => {
+  const fileId = parseInt(req.params.fileId, 10);
+  const userId = req.user.id;
+
   try {
-    const fileId = parseInt(req.params.fileId);
-    const file = await queries.getFileById(fileId);
+    const file = await queries.getFileById(userId, fileId);
 
     if (!file) {
       return res.status(404).redirect('/homepage');
     }
 
-    res.render('file/fileInfo', { file }); 
+    res.render('file/fileInfo', { 
+      file: {
+        id: file.id,
+        fileName: file.fileName,
+        fileSize: file.fileSize,
+        createdAt: file.createdAt,
+        updatedAt: file.updatedAt,
+      }
+    });
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while fetching file details.' });
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred.' });
   }
 };

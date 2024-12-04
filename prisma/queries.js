@@ -120,14 +120,15 @@ const prismaQueries = {
     });
   },
 
-  getFileById: async (fileId) => {
+  getFileById: async (userId, fileId) => {
     return await prisma.file.findUnique({
       where: {
+        userId: userId,
         id: fileId,
       },
     });
   },
-  
+
 };
 
 module.exports = prismaQueries;
