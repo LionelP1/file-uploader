@@ -52,7 +52,6 @@ exports.getHomePage = async (req, res) => {
   }
 };
 
-
 exports.getCreateFolderForm = (req, res) => {
   try {
     const folderId = req.params.folderId || null;

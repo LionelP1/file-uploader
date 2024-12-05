@@ -19,5 +19,8 @@
       <li><strong>Created At:</strong> <%= new Date(file.createdAt).toLocaleString() %></li>
       <li><strong>Last Updated:</strong> <%= new Date(file.updatedAt).toLocaleString() %></li>
     </ul>
+    <a href="/download/<%= file.id %>">
+      <button>Download File</button>
+    </a>
   </body>
 </html>

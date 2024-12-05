@@ -40,6 +40,6 @@ router.post('/create-file/:folderId?',
 
 router.delete('/delete-:type/:fileId', authMiddleware.isAuthenticated, fileController.deleteFile);
 
+router.get('/download/:fileId', authMiddleware.isAuthenticated, fileController.downloadFile);
 
-// router.delete('/delete-file/:fileId', authMiddleware.isAuthenticated, fileController.deleteFile);
 module.exports = router;
