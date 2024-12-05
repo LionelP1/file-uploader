@@ -127,29 +127,11 @@ const prismaQueries = {
     });
   },
 
-  deleteFolder: async ( userId, folderID) => {
-    // delete all files
-    await prisma.file.deleteMany({
+  deleteFolder: async (userId, folderId) => {
+    return await prisma.folder.delete({
       where: {
-        folderId: folderId,
         userId: userId,
-      },
-    });
-  
-    // delete subfolders
-    const subfolders = await prisma.folder.findMany({
-      where: { parentId: folderId, userId: userId },
-    });
-  
-    for (const subfolder of subfolders) {
-      await prismaQueries.deleteFolder(subfolder.id, userId);
-    }
-  
-    // delete itself
-    return await prisma.folder.deleteMany({
-      where: {
         id: folderId,
-        userId: userId,
       },
     });
   },

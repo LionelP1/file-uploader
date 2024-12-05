@@ -1,4 +1,5 @@
 const queries = require("../prisma/queries");
+const deleteFolder = require("../utils/deleteFolder");
 
 exports.createFolder = async (req, res) => {
   try {
@@ -28,14 +29,10 @@ exports.deleteFolder = async (req, res) => {
   const userId = req.user.id;
 
   try {
-    const folder = await queries.getFolderById(folderId, userId);
-    const parentFolderId = folder.parentId;
+    const folder = await queries.getFolderById(userId, folderId);
+    const parentFolderId = folder.parentFolderId;
 
-    const deleted = await queries.deleteFolder(folderId, userId);
-
-    if (!deleted.count) {
-      return res.status(404).json({ error: 'Folder not found or not authorized to delete.' });
-    }
+    await deleteFolder.deleteFolderAndContents(userId, folderId);
 
     if (parentFolderId) {
       res.redirect(`/homepage/${parentFolderId}`);
@@ -48,4 +45,3 @@ exports.deleteFolder = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while deleting the folder.' });
   }
 };
-
