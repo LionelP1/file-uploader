@@ -51,7 +51,8 @@ input[type="password"] {
   font-size: 1.08rem;
 }
 
-input:focus {
+input[type="text"],
+input[type="password"]:focus {
   border-color: #5b9bd5;
   outline: none;
   box-shadow: 0 0 5px rgba(91, 155, 213, 0.7);
