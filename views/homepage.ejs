@@ -8,13 +8,12 @@
 </head>
 <body>
     <h2 class="title">Welcome to the homepage</h2>
-    <form action="/logout" method="POST">
-        <button class="messages-nav" type="submit">Log Out</button>
-    </form>
+    <% if (folder) { %>
+        <h3>Current Folder: <%= folder.folderName %></h3>
+    <% } %>
 
-    <div>
+    <div class="navigation">
         <% if (folder) { %>
-            <h3>Current Folder: <%= folder.folderName %></h3>
             <% if (parentFolder) { %>
                 <a href="/homepage/<%= parentFolder.id %>">
                     <button>Back to <%= parentFolder.folderName %></button>
@@ -24,15 +23,19 @@
                 <button>Back to Home</button>
             </a>
         <% } %>
+
+        <a href="<%= folder ? '/create-folder/' + folder.id : '/create-folder' %>">
+            <button>Create New Folder</button>
+        </a>
+    
+        <a href="<%= folder ? '/create-file/' + folder.id : '/create-file' %>">
+            <button>Upload New File</button>
+        </a>
+
+        <form action="/logout" method="POST">
+            <button class="messages-nav" type="submit">Log Out</button>
+        </form>
     </div>
-
-    <a href="<%= folder ? '/create-folder/' + folder.id : '/create-folder' %>">
-        <button>Create New Folder</button>
-    </a>
-
-    <a href="<%= folder ? '/create-file/' + folder.id : '/create-file' %>">
-        <button>Upload New File</button>
-    </a>
 
     <div class="file-folder-table">
         <%- include('folderTable', { filesAndFolders }); %>
