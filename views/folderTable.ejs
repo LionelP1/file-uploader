@@ -14,9 +14,9 @@
         <tr class="table-row clickable-row" onclick="window.location.href='<%= item.type === 'Folder' ? `/homepage/${item.id}` : `/file-info/${item.id}` %>'">
           <td class="table-cell">
             <% if (item.type === 'Folder') { %>
-              <img src="/images/folder-icon.png" alt="Folder" class="icon" />
+              <img src="/assests/folder.png" alt="Folder" class="icon" />
             <% } else if (item.type === 'File') { %>
-              <img src="/images/file-icon.png" alt="File" class="icon" />
+              <img src="/assests/file.png"alt="file" class="icon" />
             <% } %>
             <%= item.name %>
           </td>
