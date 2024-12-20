@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h2>Create a New Folder</h2>
-    <form action="<%= folderId ? '/create-folder/' + folderId : '/create-folder' %>" method="POST">
-        <label for="folderName">Folder Name:</label>
-        <input type="text" id="folderName" name="folderName" required>
-        <button type="submit">Create Folder</button>
+    <h2 class="title">Create a New Folder</h2>
+    <form class ="form" action="<%= folderId ? '/create-folder/' + folderId : '/create-folder' %>" method="POST">
+        <label class="file-form-label" for="folderName">Folder Name:</label>
+        <input class="file-form-textarea" type="text" id="folderName" name="folderName" required>
+        <div class="button-wrapper">
+            <button class="file-submit" type="submit">Create Folder</button>
+            <a class="cancel" href="/homepage/<%= folderId %>">
+                Cancel
+            </a>
+        </div>
     </form>
-    
-    <a href="/homepage/<%= folderId %>">
-        <button>Cancel</button>
-    </a>
 </body>
 </html>
