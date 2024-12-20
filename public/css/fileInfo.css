@@ -1,0 +1,12 @@
+.file-info {
+  list-style-type: none;
+  padding: 0;
+}
+
+.file-item {
+  padding: 10px;
+}
+
+.label {
+ font-size: 25px;
+}

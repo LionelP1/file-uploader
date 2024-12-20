@@ -8,19 +8,26 @@
   </head>
   <body>
     <%- include('../header') %>
-    <h3>Details for File: <%= file.fileName %></h3>
-    <a href="/homepage/<%=  file.folderId %>">
-      <button>Back to Folder</button>
-    </a>
-    <ul>
-      <li><strong>Id:</strong> <%= file.id %></li>
-      <li><strong>Name:</strong> <%= file.fileName %></li>
-      <li><strong>Size:</strong> <%= (file.fileSize / 1024).toFixed(2) %> KB</li>
-      <li><strong>Created At:</strong> <%= new Date(file.createdAt).toLocaleString() %></li>
-      <li><strong>Last Updated:</strong> <%= new Date(file.updatedAt).toLocaleString() %></li>
+    <h3 class="title">Details for File: <%= file.fileName %></h3>
+
+    <div class="navigation">
+      <a href="/homepage/<%=  file.folderId %>">
+        <button>Back to Folder</button>
+
+        <a href="/download/<%= file.id %>">
+          <button>Download File</button>
+        </a>
+      </a>
+
+    </div>
+
+    <ul class="file-info">
+      <li class="file-item"><strong class="label">Id: <%= file.id %></span></li>
+      <li class="file-item"><strong class="label">Name: <%= file.fileName %></li>
+      <li class="file-item"><strong class="label">Size: <%= (file.fileSize / 1024).toFixed(2) %> KB</li>
+      <li class="file-item"><strong class="label">Created At: <%= new Date(file.createdAt).toLocaleString() %></span></li>
     </ul>
-    <a href="/download/<%= file.id %>">
-      <button>Download File</button>
-    </a>
+    
+    
   </body>
 </html>
