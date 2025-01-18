@@ -4,7 +4,7 @@
 The File Uploader is a web application designed to handle file uploads effortlessly. It supports multiple file formats, provides real-time progress tracking, and ensures secure handling of uploads, making it a versatile and reliable solution for users. The app also includes **user authentication**, allowing users to create accounts, log in, and manage their uploaded files securely.
 
 ## Live Demo
-[File Uploader Live Demo](https:file-uploader-production-155a.up.railway.app)
+[File Uploader Live Demo](https://file-uploader-production-155a.up.railway.app)
 
 ## Features
 - **User Authentication:**
